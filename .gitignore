@@ -1,7 +1,7 @@
 # Custom
 draft/
 .DS_Store
-
+.prettierrc.json
 # Logs
 logs
 *.log
