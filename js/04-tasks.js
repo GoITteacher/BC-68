@@ -10,8 +10,8 @@
 
 function logItems(items) {}
 
-logItems(["Mango", "Poly", "Ajax"]);
-logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
+logItems(['Mango', 'Poly', 'Ajax']);
+logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
 
 /**
  * Напиши функцію printInfo(names, phones) яка виводить
@@ -25,8 +25,8 @@ logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
 function printInfo(names, phones) {}
 
 printInfo(
-  "Jacob,William,Solomon,Artemis",
-  "89001234567,89001112233,890055566377,890055566300"
+  'Jacob,William,Solomon,Artemis',
+  '89001234567,89001112233,890055566377,890055566300',
 );
 
 /**
