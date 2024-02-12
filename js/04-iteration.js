@@ -6,7 +6,7 @@
  * - Метод Object.values
  */
 
-const feedback = {
+/* const feedback = {
   good: 5,
   neutral: 10,
   bad: 3,
@@ -14,17 +14,119 @@ const feedback = {
 
 let totalFeedback = 0;
 
-// console.log("totalFeedback: ", totalFeedback);
+for (const key in feedback) {
+  totalFeedback += feedback[key];
+}
+
+console.log("totalFeedback: ", totalFeedback);
+ */
+/**
+ * ---------------------------------
+ */
+
+/* const user = {
+  username: "Volodka",
+  age: 23,
+  city: "Dnipro",
+  country: "Ukraine",
+};
+
+for (const key in user) {
+  const str = `user[${key}] = ${user[key]}`;
+  console.log(str);
+} */
 
 /**
  * ---------------------------------
  */
-const keys = feedback;
+
+/* let x = 10;
+
+x += 15;
+x -= 5;
+
+console.log(x); */
+
+/**
+ * ---------------------------------
+ */
+/* const objA = {
+  x1: 10,
+  x2: 20,
+  x3: 30,
+};
+
+const objB = {
+  y1: 50,
+  y2: 60,
+  y3: 70,
+  address: {
+    city: "",
+    country: "",
+    street: "",
+  },
+};
+
+for (const key in objB) {
+  console.log(key, objB[key]);
+} */
+
+/**
+ * ---------------------------------
+ */
+/* const objA = {
+  x1: 10,
+  x2: 20,
+  x3: 30,
+};
+
+const objB = {
+  y1: 50,
+  y2: 60,
+  y3: 70,
+}; */
+
+/* const keys = Object.keys(objB);// ['']
+
 console.log(keys);
 
-// console.log("totalFeedback: ", totalFeedback);
+for (const key of keys) {
+  console.log(objB[key]);
+} */
 
-const values = feedback;
-console.log(values);
+/* const values = Object.values(objB);
 
-// console.log('totalFeedback: ', totalFeedback);
+for (const value of values) {
+  console.log(value);
+}
+ */
+
+/* for (const elem of Object.keys(objB)) {
+  console.log(elem);
+}
+
+for (const elem of Object.values(objB)) {
+  console.log(elem);
+} */
+
+// ===========================
+
+const objB = {
+  y1: 50,
+  y2: 60,
+  y3: 70,
+};
+
+/* 
+[
+  ['y1', 50],
+  ['y2', 60],
+  ['y3', 70],
+]
+*/
+/* 
+for (const arr of Object.entries(objB)) {
+  const key = arr[0];
+  const value = arr[1];
+  console.log(key, value);
+} */
