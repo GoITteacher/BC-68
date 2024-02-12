@@ -8,9 +8,3 @@
 /**
  * --------------------------
  */
-
-const arr = [1, 2, 3];
-
-function foo() {
-  console.log("hello");
-}
