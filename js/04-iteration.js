@@ -111,11 +111,11 @@ for (const elem of Object.values(objB)) {
 
 // ===========================
 
-const objB = {
-  y1: 50,
-  y2: 60,
-  y3: 70,
-};
+// const objB = {
+//   y1: 50,
+//   y2: 60,
+//   y3: 70,
+// };
 
 /* 
 [
@@ -130,3 +130,22 @@ for (const arr of Object.entries(objB)) {
   const value = arr[1];
   console.log(key, value);
 } */
+
+// ===============================
+
+/* 
+const objB = {
+  y1: 50,
+  y2: 60,
+  y3: 70,
+};
+
+for (const key in objB) {
+  console.log(key);
+}
+
+for (const key of Object.values(objB)) {
+  console.log(key);
+} */
+
+// ===============================
