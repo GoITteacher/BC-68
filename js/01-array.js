@@ -7,35 +7,57 @@
  */
 
 const friends = [
-  { name: "Mango", online: false },
-  { name: "Kiwi", online: true },
-  { name: "Poly", online: false },
-  { name: "Ajax", online: false },
+  { name: 'Mango', online: false, age: 15 },
+  { name: 'Kiwi', online: true, age: 25 },
+  { name: 'Poly', online: true, age: 20 },
+  { name: 'Ajax', online: false, age: 19 },
 ];
-
-console.table(friends);
 
 /**
  * Пошук друга за іменем
  */
-function findFriendByName(allFriends, friendName) {}
 
-// console.log(findFriendByName(friends, "Poly"));
-// console.log(findFriendByName(friends, "Chelsy"));
+/* function findFriendByName(allFriends, friendName) {
+  for (const friend of allFriends) {
+    if (friend.name === friendName) {
+      return friend;
+    }
+  }
+}
+
+console.log(findFriendByName(friends, 'Poly')); */
 
 /**
  * Отримуємо імена всіх лрузів
  */
-function getAllNames(allFriends) {}
+/* function getAllNames(allFriends) {
+  const arr = [];
 
-// console.log(getAllNames(friends));
+  for (const friend of allFriends) {
+    arr.push(friend.name);
+  }
+
+  return arr;
+}
+
+console.table(getAllNames(friends)); */
 
 /**
  * Отримуємо імена тільки тих друзів, які зараз онлайн
  */
-function getOnlineFriends(allFriends) {}
+/* function getOnlineFriends(allFriends) {
+  const arr = [];
 
-// console.log(getOnlineFriends(friends));
+  for (const friend of allFriends) {
+    if (friend.online) {
+      arr.push(friend.name);
+    }
+  }
+
+  return arr;
+}
+
+console.log(getOnlineFriends(friends)); */
 
 /**
  * Напишіть функцію calcTotalPrice(stones, stoneName),
@@ -44,9 +66,20 @@ function getOnlineFriends(allFriends) {}
  * таким ім'ям, ціною та кількістю з об'єкта
  */
 
-const stones = [
-  { name: "Смарагд", price: 1300, quantity: 4 },
-  { name: "Діамант", price: 2700, quantity: 3 },
-  { name: "Сапфір", price: 400, quantity: 7 },
-  { name: "Щебінь", price: 200, quantity: 2 },
+/* const stones = [
+  { name: 'Смарагд', price: 1300, quantity: 4 },
+  { name: 'Діамант', price: 2700, quantity: 3 },
+  { name: 'Сапфір', price: 400, quantity: 7 },
+  { name: 'Щебінь', price: 200, quantity: 2 },
 ];
+
+function calcTotalPrice(allStones, stoneName) {
+  for (const stone of allStones) {
+    if (stone.name === stoneName) {
+      return stone.price * stone.quantity;
+    }
+  }
+  return 0;
+}
+
+console.log(calcTotalPrice(stones, 'awdaw')); */
