@@ -6,29 +6,39 @@
  * - Інлайн стрілочні функції
  */
 
-function add(a, b, c) {
-  return a + b + c;
-}
+// const arrow = x => x * 2;
+// console.log(arrow(6));
 
-// const addArrow =
+// =======================
+// function add(a, b, c) {
+//   return a + b + c;
+// }
 
-console.log(add(5, 10, 15));
+// const addArrow = (a, b, c) => a + b + c;
+
+// console.log(add(5, 10, 15));
 // console.log(addArrow(5, 10, 15));
+
+// =======================
+
+const arrow = (...args) => {
+  console.log(args);
+};
+arrow(1, 4, 3, 2, 6, 7, 8);
+
+// =======================
 
 /**
  * ---------------------------
  */
-function fnA() {
+
+/* const arrowFnA = () => {
   return {
-    a: 5,
+    a: 10,
   };
-}
+};
 
-console.log(fnA());
-
-// const arrowFnA =
-
-// console.log(arrowFnA());
+console.log(arrowFnA()); */
 
 /**
  * Функція calc(a, b, callback)
@@ -39,10 +49,5 @@ function calc(a, b, callback) {
   console.log(result);
 }
 
-calc(2, 3, function (x, y) {
-  return x + y;
-});
-
-calc(10, 8, function (x, y) {
-  return x - y;
-});
+calc(2, 3, (x, y) => x + y);
+calc(10, 8, (x, y) => x - y);
