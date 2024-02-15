@@ -1,3 +1,27 @@
+// =======================================
+/* const numbers1 = [1, 2, 3, 4, 5, 6];
+
+function foo(arr) {
+  arr.pop();
+}
+
+foo(numbers1);
+
+console.log(numbers1); */
+
+/* 
+- filter
+- reduce
+- sort - мутуючий
+- some
+- every
+- splice - мутуючий
+- pop - мутуючий
+- push
+*/
+
+// =======================================
+
 /**
  * Метод filter
  *
@@ -8,14 +32,18 @@
  *    - якщо коллбек повернув false елемент НЕ додається в масив, що повертається
  */
 
-const numbers = [5, 10, 15, 20, 25];
+/* const numbers = [5, 10, 15, 20, 25, 30, 35];
 
-const filteredNumbers = numbers;
-console.log(filteredNumbers);
+const filteredNumbers = numbers.filter(el => {
+  return el % 2 === 0;
+});
+
+console.log(filteredNumbers); */
 
 /**
  * ---------------------------
  */
+
 const allCars = [
   {
     make: 'Honda',
@@ -104,7 +132,11 @@ const allCars = [
  * значення параметра threshold.
  */
 
-const filterByPrice = (cars, threshold) => {};
+const filterByPrice = (cars, threshold) => {
+  const filteredCars = cars.filter(car => car.price < threshold);
+
+  return filteredCars;
+};
 
 // console.table(filterByPrice(allCars, 30000));
 // console.table(filterByPrice(allCars, 25000));
@@ -114,16 +146,29 @@ const filterByPrice = (cars, threshold) => {};
  * властивість onSale яких true.
  */
 
-const getCarsWithDiscount = cars => {};
+/* const getCarsWithDiscount = cars => {
+  const filteredArr = cars.filter(car => car.onSale);
+  return filteredArr;
+};
 
-// console.table(getCarsWithDiscount(allCars));
+console.table(getCarsWithDiscount(allCars)); */
 
 /**
  * Нехай функція getCarsWithType повертає масив автомобілів тип яких збігається
  * зі значенням параметра type.
  */
 
-const getCarsWithType = (cars, type) => {};
+/* const getCarsWithType = (cars, type) => {
+  return cars.filter(car => car.type === type);
+};
 
-// console.table(getCarsWithType(allCars, "suv"));
-// console.table(getCarsWithType(allCars, "sedan"));
+console.table(getCarsWithType(allCars, 'suv'));
+console.table(getCarsWithType(allCars, 'sedan'));
+ */
+
+// ====================
+/* const arr = [1, 3, 4, 0, 1, 0, 2, 0, 4, 5, 6, 0, 6, 0];
+
+const filteredArr = arr.filter(num => num);
+
+console.log(filteredArr); */
