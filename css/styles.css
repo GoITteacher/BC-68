@@ -37,6 +37,17 @@ body {
 .site-nav__link--current {
   color: tomato;
 }
+.color-picker {
+  display: flex;
+  gap: 10px;
+}
+
+.color-picker-item {
+  width: fit-content;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
 
 .color-picker__option {
   display: inline-block;
@@ -61,4 +72,37 @@ body {
 .title__link {
   display: inline-flex;
   margin-left: 40px;
+}
+
+.first-elem {
+  background-color: blue;
+  font-size: large;
+  color: white;
+  border: 1px solid black;
+  text-transform: capitalize;
+}
+
+.hidden {
+  display: none;
+}
+
+.lowerCase {
+  text-transform: lowercase;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.item {
+  border: 1px solid black;
+  background-color: tomato;
+}
+
+.valid {
+  background-color: rgb(125, 255, 125);
+}
+
+.invalid {
+  background-color: rgb(255, 112, 112);
 }
