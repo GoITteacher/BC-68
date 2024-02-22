@@ -10,8 +10,17 @@
   <body>
     <p><a href="index.html">Go back</a></p>
 
-    <input type="text" class="js-user-name" />
+    <input type="text" class="js-user-name" data-min-len="6" />
 
+    <div>
+      <input type="checkbox" class="js-checkbox" />
+    </div>
+    <div>
+      <input type="radio" class="js-radio" name="group-1" data-idx="1" />
+      <input type="radio" class="js-radio" name="group-1" data-idx="2" />
+    </div>
+
+    <p class="js-title"></p>
     <script src="./js/02-input.js"></script>
   </body>
 </html>
