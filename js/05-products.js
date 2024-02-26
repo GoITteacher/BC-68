@@ -44,3 +44,59 @@ const products = [
 ];
 
 const container = document.querySelector('.products');
+
+// =======================================================
+// ------------------ RENDER -----------------------------
+function productTemplate(product) {
+  return `<li class="item" data-id="${product.id}">
+  <img
+    src="${product.img}"
+    alt=""
+  />
+  <h2>${product.name}</h2>
+  <p>Price: ${product.price}$</p>
+</li>`;
+}
+
+function productsTemplate(arr) {
+  return arr.map(productTemplate).join('');
+}
+
+function renderProducts(arr) {
+  const markup = productsTemplate(arr);
+  container.innerHTML = markup;
+}
+
+renderProducts(products);
+
+// =======================================================
+
+container.addEventListener('click', e => {
+  if (e.target === e.currentTarget) return;
+  const liElem = e.target.closest('li');
+  const productId = liElem.dataset.id;
+
+  const product = products.find(el => el.id == productId);
+
+  const instance = basicLightbox.create(
+    `
+    <div class="modal">
+       <img src="${product.img}"/>
+       <h2>${product.name}</h2>
+       <p>${product.description}</p>
+    </div>
+  `,
+    {
+      closable: true,
+      className: '',
+      onShow: () => {
+        console.log('Hello');
+      },
+      onClose: () => {
+        console.log('Bye');
+      },
+    },
+  );
+
+  instance.show();
+});

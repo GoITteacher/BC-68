@@ -55,3 +55,8 @@
   border: none;
   cursor: pointer;
 }
+
+.active {
+  background-color: #bd95ed;
+  color: white;
+}

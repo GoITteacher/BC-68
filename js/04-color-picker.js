@@ -1,10 +1,10 @@
 let colorPalette = [];
-const LENGTH = 5;
+const LENGTH = 8;
 
 function createPaletteItems() {
   const items = [];
   for (let i = 0; i < LENGTH; i++) {
-    let hex = getRangomColor();
+    let hex = getRandomColor();
     let color = {
       hex,
       rgb: hexToRgb(hex),
@@ -16,7 +16,7 @@ function createPaletteItems() {
   colorPalette = [...items];
 }
 
-function getRangomColor() {
+function getRandomColor() {
   return `#${getRandomHex()}${getRandomHex()}${getRandomHex()}`;
 }
 
@@ -34,26 +34,49 @@ function hexToRgb(hex) {
 }
 
 createPaletteItems();
-////////////////////////////////////////////////////////////////////////////
 
+// ===========================================================
 const refs = {
   itemList: document.querySelector('.js-colors-box'),
-  modalElement: document.querySelector('.modal'),
   btnReloadColor: document.querySelector('.js-reload-color'),
-  backdropElem: document.querySelector('.js-backdrop'),
+  // modalElement: document.querySelector('.modal'),
+  // backdropElem: document.querySelector('.js-backdrop'),
 };
+// ===========================================================
+const markup = colorsTemplate(colorPalette);
+refs.itemList.innerHTML = markup;
 
-////////////////////////////////////////////////////////////////////////////
+refs.btnReloadColor.addEventListener('click', () => {
+  createPaletteItems();
+  const markup = colorsTemplate(colorPalette);
+  refs.itemList.innerHTML = markup;
+});
 
-/* 
-nodeName
-<li class="color-item">
-    <button class="color-body" style="background-color:...;"></button>
-    <div class="color-footer">
-        <div>HEX: ....</div>
-        <div>RGB: ....</div>
-        <div></div>
-    </div>
-</li>
+function colorTemplate(colorObj) {
+  return `<li class="color-item">
+  <button class="color-body" style="background-color:${colorObj.hex};"></button>
+  <div class="color-footer">
+      <div>HEX: ${colorObj.hex}</div>
+      <div>RGB: (${colorObj.rgb})</div>
+      <div></div>
+  </div>
+</li>`;
+}
 
-*/
+function colorsTemplate(arr) {
+  return arr.map(colorTemplate).join('\n\n');
+}
+
+// ===========================================================
+
+refs.itemList.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') return;
+
+  const color = e.target.style.backgroundColor;
+
+  const instance = basicLightbox.create(
+    `<div class="modal" style="background-color: ${color};"></div>`,
+  );
+
+  instance.show();
+});
