@@ -52,12 +52,12 @@ refs.btnReloadColor.addEventListener('click', () => {
   refs.itemList.innerHTML = markup;
 });
 
-function colorTemplate(colorObj) {
+function colorTemplate({ hex, rgb }) {
   return `<li class="color-item">
-  <button class="color-body" style="background-color:${colorObj.hex};"></button>
+  <button class="color-body" style="background-color:${hex};"></button>
   <div class="color-footer">
-      <div>HEX: ${colorObj.hex}</div>
-      <div>RGB: (${colorObj.rgb})</div>
+      <div>HEX: ${hex}</div>
+      <div>RGB: (${rgb})</div>
       <div></div>
   </div>
 </li>`;

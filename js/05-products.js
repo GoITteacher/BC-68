@@ -47,14 +47,14 @@ const container = document.querySelector('.products');
 
 // =======================================================
 // ------------------ RENDER -----------------------------
-function productTemplate(product) {
-  return `<li class="item" data-id="${product.id}">
+function productTemplate({ id, img, name, price }) {
+  return `<li class="item" data-id="${id}">
   <img
-    src="${product.img}"
+    src="${img}"
     alt=""
   />
-  <h2>${product.name}</h2>
-  <p>Price: ${product.price}$</p>
+  <h2>${name}</h2>
+  <p>Price: ${price}$</p>
 </li>`;
 }
 
