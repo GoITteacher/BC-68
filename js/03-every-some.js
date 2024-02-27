@@ -25,7 +25,7 @@ const players = [
  * - Поелементно перебирає оригінальний масив
  * - Повертає true якщо всі елементи масиву задовольняють умову
  */
-const isAllOnline = players.every(player => player.online);
+const isAllOnline = players.every(({ online }) => online);
 console.log('isAllOnline: ', isAllOnline);
 
 /**
@@ -34,7 +34,7 @@ console.log('isAllOnline: ', isAllOnline);
  * - Поелементно перебирає оригінальний масив
  * - Повертає true якщо хоча б один елемент масиву задовольняє умову
  */
-const isAnyOnline = players.some(p => p.online);
+const isAnyOnline = players.some(({ online }) => online);
 console.log('isAnyOnline: ', isAnyOnline);
 
 const anyHardcorePlayers = players;

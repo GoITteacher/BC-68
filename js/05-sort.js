@@ -58,7 +58,7 @@ console.log('ascSortedNumbers', ascSortedNumbers); */
  * Сортування масиву об'єктів
  *
  */
-/* 
+
 const players = [
   { id: 'player-1', name: 'Mango', timePlayed: 310, online: false },
   { id: 'player-2', name: 'Poly', timePlayed: 470, online: true },
@@ -70,7 +70,8 @@ const players = [
 const sortedByBestPlayers = players.toSorted((a, b) => {
   return a.timePlayed - b.timePlayed;
 });
-console.table(sortedByBestPlayers); */
+
+console.table(sortedByBestPlayers);
 
 // const sortedByWorstPlayers = players;
 // console.table(sortedByWorstPlayers);

@@ -29,7 +29,7 @@ const allCars = [
  * Шукаємо машину за моделлю
  */
 // const getCarByModel = (cars, model) => {
-//   return cars.find(car => car.model === model);
+//   return cars.find(({model: m}) => m === model);
 // };
 
 // console.log(getCarByModel(allCars, 'F-150'));
@@ -40,8 +40,8 @@ const allCars = [
  * Шукаємо машину за типом кузова
  */
 // const getCarByType = (cars, type) => {
-//   return cars.find(car => {
-//     return car.type === type;
+//   return cars.find(({type: t}) => {
+//     return t === type;
 //   });
 // };
 

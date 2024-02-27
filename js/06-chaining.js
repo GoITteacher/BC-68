@@ -137,14 +137,13 @@ console.table(getModelsOnSale(allCars)); */
  */
 /* const getSortedCarsOnSale = cars => {
   return cars
-    .filter(car => car.onSale)
+    .filter(({ onSale }) => onSale)
     .toSorted((a, b) => {
       return a.price - b.price;
     });
 };
 
-console.table(getSortedCarsOnSale(allCars));
- */
+console.table(getSortedCarsOnSale(allCars)); */
 
 // ================================
 
@@ -448,23 +447,17 @@ const users = [
 ];
 
 function task1() {
-  // map filter
   return users
-    .map(user => {
-      const copy = { ...user };
-      delete copy.firstName;
-      delete copy.lastName;
-
-      copy.fullName = `${user.firstName} ${user.lastName}`;
-
+    .map(({ firstName, lastName, ...copy }) => {
+      copy.fullName = `${firstName} ${lastName}`;
       return copy;
     })
     .filter(user => user.age > 40)
     .toSorted((a, b) => {
       return a.fullName.localeCompare(b.fullName);
     })
-    .map(user => {
-      return `<li>${user.fullName}</li>`;
+    .map(({ fullName }) => {
+      return `<li>${fullName}</li>`;
     })
     .join('\n');
 }

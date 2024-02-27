@@ -133,8 +133,7 @@ const allCars = [
  */
 
 const filterByPrice = (cars, threshold) => {
-  const filteredCars = cars.filter(car => car.price < threshold);
-
+  const filteredCars = cars.filter(({ price }) => price < threshold);
   return filteredCars;
 };
 
@@ -147,7 +146,7 @@ const filterByPrice = (cars, threshold) => {
  */
 
 /* const getCarsWithDiscount = cars => {
-  const filteredArr = cars.filter(car => car.onSale);
+  const filteredArr = cars.filter(({onSale}) => onSale);
   return filteredArr;
 };
 
@@ -159,12 +158,11 @@ console.table(getCarsWithDiscount(allCars)); */
  */
 
 /* const getCarsWithType = (cars, type) => {
-  return cars.filter(car => car.type === type);
+  return cars.filter(({ type: t }) => t === type);
 };
 
 console.table(getCarsWithType(allCars, 'suv'));
-console.table(getCarsWithType(allCars, 'sedan'));
- */
+console.table(getCarsWithType(allCars, 'sedan')); */
 
 // ====================
 /* const arr = [1, 3, 4, 0, 1, 0, 2, 0, 4, 5, 6, 0, 6, 0];

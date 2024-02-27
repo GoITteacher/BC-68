@@ -37,7 +37,7 @@ console.log(totalSalary); */
  * Рахуємо загальну кількість годин
  */
 
-/* const players = [
+const players = [
   { id: 'player-1', name: 'Mango', timePlayed: 310, online: false },
   { id: 'player-2', name: 'Poly', timePlayed: 470, online: true },
   { id: 'player-3', name: 'Kiwi', timePlayed: 230, online: true },
@@ -45,27 +45,27 @@ console.log(totalSalary); */
   { id: 'player-5', name: 'Chelsey', timePlayed: 80, online: true },
 ];
 
-const totalTimePlayed = players.reduce((acc, player) => {
-  return acc + player.timePlayed;
+const totalTimePlayed = players.reduce((acc, { timePlayed }) => {
+  return acc + timePlayed;
 }, 0);
 
-console.log(totalTimePlayed); */
+console.log(totalTimePlayed);
 
 /**
  * Рахуємо загальну суму товарів кошика
  */
 
-/* const cart = [
+const cart = [
   { label: 'Apples', price: 100, quantity: 2 },
   { label: 'Bananas', price: 120, quantity: 3 },
   { label: 'Lemons', price: 70, quantity: 4 },
 ];
 
-const totalAmount = cart.reduce((acc, product) => {
-  return acc + product.price * product.quantity;
+const totalAmount = cart.reduce((acc, { price, quantity }) => {
+  return acc + price * quantity;
 }, 0);
 
-console.log(totalAmount); */
+console.log(totalAmount);
 
 //=============================
 const users = [
@@ -367,7 +367,7 @@ const users = [
   },
 ];
 
-/* const filteredUsersByAge = users.reduce((acc, user) => {
+const filteredUsersByAge = users.reduce((acc, user) => {
   if (user.age > 40) {
     acc.push(user);
   }
@@ -375,4 +375,4 @@ const users = [
   return acc;
 }, []);
 
-console.table(filteredUsersByAge); */
+console.table(filteredUsersByAge);
