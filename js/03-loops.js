@@ -2,29 +2,66 @@
  * Деструктуризація об'єкта в циклі
  */
 
-const users = [
-  {
-    name: "Kate",
-  },
-  {
-    name: "Alex",
-  },
-  {
-    name: "Mark",
-  },
-];
+// const users = [
+//   {
+//     name: 'Kate',
+//     age: 20,
+//   },
+//   {
+//     name: 'Alex',
+//     age: 15,
+//   },
+//   {
+//     name: 'Mark',
+//     age: 30,
+//   },
+// ];
 
-/**
- * Без деструктуризації
- */
-const names = [];
+// =================================
 
-for (const user of users) {
-  names.push(user.name);
+/* for (const user of users) {
+  console.log(`Name:${user.name}; Age:${user.age}`);
 }
 
-console.log(names);
+for (const { name, age } of users) {
+  console.log(`Name:${name}; Age:${age}`);
+} */
 
-/**
- * З деструктуризацією
- */
+// =================================
+
+/* const userProps = {
+  name: 'awdaw',
+  age: 23,
+  city: 'Dnipro',
+  country: 'Ukraine',
+};
+
+const arr = Object.entries(userProps);
+
+for (const [key, value] of arr) {
+  console.log(`${key}: ${value}`);
+} */
+
+// =================================
+
+/* const colors = [
+  [130, 200, 144],
+  [152, 200, 144],
+  [123, 200, 144],
+  [147, 200, 144],
+  [168, 200, 144],
+  [184, 200, 144],
+  [131, 200, 144],
+  [115, 200, 144],
+  [128, 200, 144],
+  [149, 200, 144],
+];
+
+for (const [red, green, blue] of colors) {
+  console.log(`RED: ${red}
+GREEN: ${green}
+BLUE: ${blue}
+`);
+} */
+
+// =================================

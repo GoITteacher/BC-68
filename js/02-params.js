@@ -24,7 +24,7 @@ showUser(params); */
 
 // ================================================
 
-function showUser({ name, age }) {
+/* function showUser({ name = 'Default', age = 1 }) {
   console.log(name, age);
 }
 
@@ -37,3 +37,4 @@ showUser({
   name: 'Petya',
   age: 26,
 });
+ */
