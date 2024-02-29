@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "vite",
+    "build": "vite build --base=/goit-js-hw-09/",
+    "preview": "vite preview",
     "push": "git add .; git commit -m 'update'; git push;"
   },
   "repository": {
@@ -14,6 +17,14 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/GoITteacher/js-theorety-template/issues"
+  },
+  "devDependencies": {
+    "vite": "^4.5.2",
+    "glob": "^8.1.0"
+  },
+  "dependencies": {
+    "vite-plugin-full-reload": "^1.0.5",
+    "vite-plugin-html-inject": "^1.0.1"
   },
   "homepage": "https://github.com/GoITteacher/js-theorety-template#readme"
 }
