@@ -1,7 +1,8 @@
-const STORAGE_KEY = 'feedback-msg';
+import refs from './refs';
+import { messagesTemplate } from './render-function';
+import { saveToLS, loadFromLS } from './helpers';
 
-const form = document.querySelector('.feedback-form');
-const ulElem = document.querySelector('.js-message-list');
+const STORAGE_KEY = 'feedback-msg';
 
 /*
  * - Скасовуємо стандартну поведінку
@@ -58,32 +59,6 @@ init();
 
 // ======================================
 
-function saveToLS(key, value) {
-  const json = JSON.stringify(value);
-  localStorage.setItem(key, json);
-}
-
-function loadFromLS(key) {
-  const data = localStorage.getItem(key);
-  try {
-    return JSON.parse(data);
-  } catch {
-    return data;
-  }
-}
-
-// ================================================
-/* 
--
--
--
--
--
--
--
- */
-// ================================================
-
 // ================================================
 
 const inputElem = document.querySelector('.js-color-input');
@@ -93,18 +68,6 @@ inputElem.addEventListener('input', e => {
   document.body.style.backgroundColor = currentColor;
   saveToLS('bgColor', currentColor);
 });
-
-// ================================================
-/* 
--
--
--
--
--
--
--
- */
-// ================================================
 
 // ================================================
 
@@ -131,16 +94,6 @@ form.addEventListener('submit', e => {
 });
 
 let messages = [];
-
-function messageTemplate({ name, message }) {
-  return `<li>
-  <p>${name}: ${message}</p>
-</li>`;
-}
-
-function messagesTemplate(arr) {
-  return arr.map(messageTemplate).join('');
-}
 
 function renderMessages() {
   messages = loadFromLS('messages') || [];
