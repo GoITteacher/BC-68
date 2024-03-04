@@ -16,42 +16,32 @@ const clockface = document.querySelector('.js-clockface');
 
 // =======================================
 
-class Timer {
-  constructor(callback) {
-    this.tick = callback;
-    this.intervalId = null;
-    this.isActive = false;
-  }
+let isActive;
+let intervalId;
+let initTime = new Date('03.04.2024 12:43');
 
-  start() {
-    if (this.isActive) return;
-    this.isActive = true;
+function startTimer() {
+  intervalId = setInterval(() => {
+    const currentTime = Date.now();
+    const diff = initTime - currentTime;
+    renderTime(diff);
 
-    const initTime = Date.now();
-
-    this.intervalId = setInterval(() => {
-      const currentTime = Date.now();
-      const diff = currentTime - initTime;
-      this.tick(diff);
-    }, 1000);
-  }
-
-  stop() {
-    console.log('stop');
-    this.isActive = false;
-    clearInterval(this.intervalId);
-  }
+    if (diff < 1000) stopTimer();
+  }, 1000);
 }
-const timer = new Timer(renderTime);
+
+function stopTimer() {
+  clearInterval(intervalId);
+}
 
 // =========================================
 
 startBtn.addEventListener('click', () => {
-  timer.start();
+  startTimer();
 });
 
 stopBtn.addEventListener('click', () => {
-  timer.stop();
+  stopTimer();
 });
 
 function renderTime(diff) {
