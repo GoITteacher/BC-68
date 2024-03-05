@@ -71,3 +71,5 @@ function onBtnClick() {
     resultElem.textContent = isWinner ? 'Winner!' : 'Loser!';
   });
 }
+
+// ===================
