@@ -22,4 +22,52 @@
 
 const startBtn = document.querySelector('.start-btn');
 const container = document.querySelector('.container');
-const result = document.querySelector('.result');
+const resultElem = document.querySelector('.result');
+
+function createPromise(delay) {
+  const random = Math.random();
+  const isPositiveSmile = random > 0.5;
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (isPositiveSmile) {
+        resolve('🤑');
+      } else {
+        reject('👿');
+      }
+    }, delay);
+  });
+
+  return promise;
+}
+
+startBtn.addEventListener('click', onBtnClick);
+
+function onBtnClick() {
+  const promises = []; //3
+
+  for (let i = 0; i < 3; i++) {
+    container.children[i].textContent = '';
+    const promise = createPromise((i + 1) * 1000);
+
+    promise
+      .then(smile => {
+        container.children[i].textContent = smile;
+      })
+      .catch(smile => {
+        container.children[i].textContent = smile;
+      });
+
+    promises.push(promise);
+  }
+
+  Promise.allSettled(promises).then(result => {
+    const isWinner = result
+      .map(obj => {
+        return obj.value || obj.reason;
+      })
+      .every(smile => smile === '🤑');
+
+    resultElem.textContent = isWinner ? 'Winner!' : 'Loser!';
+  });
+}
