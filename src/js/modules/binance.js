@@ -2,32 +2,14 @@ const refs = {
   formEl: document.querySelector('.js-binance-form'),
   infoEl: document.querySelector('.js-binance-info'),
 };
-let userSymbol;
 
-// =================================
-
-refs.formEl.addEventListener('submit', e => {
-  e.preventDefault();
-  userSymbol = e.target.elements.query.value;
-
-  getPriceBySymbol(userSymbol)
-    .then(data => {
-      renderTicker(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-
-  e.target.reset();
-});
-
-// =================================
-function getPriceBySymbol(userSymbol) {
+function getPrice(userSymbol) {
   const BASE_URL = 'https://binance43.p.rapidapi.com';
   const END_POINT = '/ticker/price';
-  const PARAMS = `?symbol=${userSymbol}`;
-
-  const url = BASE_URL + END_POINT + PARAMS;
+  const params = new URLSearchParams({
+    symbol: userSymbol,
+  });
+  const url = `${BASE_URL}${END_POINT}?${params}`;
 
   const options = {
     headers: {
@@ -36,18 +18,11 @@ function getPriceBySymbol(userSymbol) {
     },
   };
 
-  return fetch(url, options).then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      throw new Error(res.status);
-    }
-  });
+  return fetch(url, options).then(res => res.json());
 }
-// =================================
 
 function symbolTemplate(obj) {
-  const tag = obj.symbol.replace('USDT', '').toLowerCase();
+  const tag = obj.symbol.toLowerCase().replace('usdt', '');
   return `<img
   class="coin-logo"
   src="https://assets.coincap.io/assets/icons/${tag}@2x.png"
@@ -56,7 +31,12 @@ function symbolTemplate(obj) {
 <p class="coin-price">${obj.price}</p>`;
 }
 
-function renderTicker(obj) {
-  const markup = symbolTemplate(obj);
-  refs.infoEl.innerHTML = markup;
-}
+refs.formEl.addEventListener('submit', e => {
+  e.preventDefault();
+  const userSymbol = e.target.elements.query.value;
+
+  getPrice(userSymbol).then(data => {
+    const markup = symbolTemplate(data);
+    refs.infoEl.innerHTML = markup;
+  });
+});

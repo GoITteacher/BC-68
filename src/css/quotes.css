@@ -12,3 +12,9 @@
   width: 90%;
   overflow-y: auto;
 }
+
+.quote-tags {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+}

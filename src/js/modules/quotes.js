@@ -3,47 +3,17 @@ const refs = {
   containerQuotes: document.querySelector('.js-container-quotes'),
 };
 
-refs.formEl.addEventListener('submit', onFormSubmit);
+function getRandomQuotes(lang) {
+  const BASE_URL = 'https://quotes15.p.rapidapi.com';
+  const END_POINT = '/quotes/random/';
+  const params = new URLSearchParams({
+    language_code: lang || 'en',
+  });
+  const url = `${BASE_URL}${END_POINT}?${params}`;
 
-function onFormSubmit(event) {
-  event.preventDefault();
-  const count = +event.target.elements.query.value;
-
-  getQuotes(count)
-    .then(data => {
-      renderQuotes(data);
-    })
-    .catch(err => {});
-}
-
-function renderQuotes(arr) {
-  const markup = arr
-    .map(el => {
-      return `<div class="card quote">
-    <h4 class="quote-name">${el.originator.name}</h4>
-    <p class="quote-body">
-      ${el.content}
-    </p>
-  </div>`;
-    })
-    .join('');
-  refs.containerQuotes.innerHTML = markup;
-}
-
-function getQuotes(count) {
-  const promises = [];
-  for (let i = 0; i < count; i += 1) {
-    let savePromise = getPromise(i * 1100);
-    promises.push(savePromise);
-  }
-  return Promise.all(promises);
-}
-
-function getQuote() {
-  const url = 'https://quotes15.p.rapidapi.com/quotes/random/';
   const options = {
     headers: {
-      'X-RapidAPI-Key': '9b3ff61931msh1b42d77d34e33dap1c29cajsn3d3169e0e2f4',
+      'X-RapidAPI-Key': 'f6fe44fec7msh9f58de139869781p15408ajsn8e7b73b5d6b1',
       'X-RapidAPI-Host': 'quotes15.p.rapidapi.com',
     },
   };
@@ -51,10 +21,24 @@ function getQuote() {
   return fetch(url, options).then(res => res.json());
 }
 
-function getPromise(timeout) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(getQuote());
-    }, timeout);
-  });
+function quotesTemplate(obj) {
+  return `<div class="card quote">
+  <h4 class="quote-name">${obj.originator.name}</h4>
+  <p class="quote-body">
+   ${obj.content}
+  </p>
+  <ul class="quote-tags">
+   <li>${obj.tags.join('</li><li>')}</li>
+  </ul>
+</div>`;
 }
+
+refs.formEl.addEventListener('submit', e => {
+  e.preventDefault();
+  const lang = e.target.elements.query.value;
+
+  getRandomQuotes(lang).then(result => {
+    const markup = quotesTemplate(result);
+    refs.containerQuotes.insertAdjacentHTML('beforeend', markup);
+  });
+});
