@@ -1,24 +1,10 @@
-# План заняття
+## [Частина 1 (теорія)](https://docs.google.com/presentation/d/1xbFM4RwlP1hRSYaH2C4zIVvIO6x51NcnFBnjjpQvQzA/edit#slide=id.p)
 
-1. Пограємо в Kahoot і обговоримо питання
-2. Познайомимось з Promise (практика 01-promises.js)
+## PLAN
 
-- Життєвий цикл Promise
-- Promise API
-  - Promise.prototype.then(result)
-  - Promise.prototype.catch(error)
-  - Promise.prototype.finally()
-- Ланцюжки промісів
-
-3. Розберемо промісіфікацію функцій (практика 02-promisification.js)
-
-- Промісифікація функцій
-- Статичні методи Promise.all() та Promise.race()
-
-4. Розв’яжемо практичну задачу: ігровий автомат (практика 03-game.js)
-
-5. А що робити в ДЗ? У домашньому завданні на вас чекає 2 задачі: на створення
-   таймера, який здійснює зворотний відлік до певної дати, та генератор
-   промісів.
-
-✅ ❌
+1. Presentation
+1. Network
+1. Fetch
+   - json placeholder
+   - rapid-api
+1. Practice
