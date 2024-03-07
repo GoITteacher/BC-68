@@ -1,10 +1,23 @@
-## [Частина 1 (теорія)](https://docs.google.com/presentation/d/1xbFM4RwlP1hRSYaH2C4zIVvIO6x51NcnFBnjjpQvQzA/edit#slide=id.p)
+# ПЛАН
 
-## PLAN
+- Пакет [json-server] (https://github.com/typicode/json-server)
+- Postman
+- Робота з приватним API
+  - **C**reate
+    - Метод POST
+    - Тіло
+    - Заголовки
+    - Відповідь
+  - **R**ead
+    - Метод GET
+    - Відповідь
+  - **U**pdate
+    - Методи PUT та PATCH
+    - Тіло
+    - Заголовки
+    - Відповідь
+  - **D**elete
+    - Метод DELETE
+    - Відповідь
 
-1. Presentation
-1. Network
-1. Fetch
-   - json placeholder
-   - rapid-api
-1. Practice
+---

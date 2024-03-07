@@ -23,6 +23,7 @@
     "vite": "^4.5.2"
   },
   "dependencies": {
+    "json-server": "^1.0.0-alpha.23",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-html-inject": "^1.0.1"
   },
