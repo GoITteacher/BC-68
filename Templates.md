@@ -1,21 +1,14 @@
 ```html
-<li class="book-item card">
-  <img
-    class="book-img"
-    src="https://source.unsplash.com/1280x720/?random=431&book"
-    alt=""
-  />
-  <h5 class="book-title">ab corrupti officia</h5>
-  <h6>Author: Mariya</h6>
-  <p class="book-desc">
-    Eos harum voluptatem possimus perferendis earum eos similique et. Deserunt
-    consequuntur et autem commodi iste aut sed omnis. Est deserunt facilis
-    voluptas sit dignissimos.
-  </p>
+<li class="book-item card" data-id="${id}">
+  <img class="book-img" src="${img}" alt="" />
+
+  <h5 class="book-title">${title}</h5>
+  <h6>Author: ${author}</h6>
+  <p class="book-desc">${desc}</p>
 
   <div class="book-info">
-    <span>Price: 6</span>
-    <span>Rating: 705</span>
+    <span>Price: ${price}</span>
+    <span>Rating: ${rating}</span>
   </div>
 </li>
 ```
