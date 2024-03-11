@@ -1,4 +1,9 @@
-class UsersAPI {
+import Axios from 'axios';
+const axios = Axios.create({
+  baseURL: 'http://localhost:3000/users',
+});
+
+class UsersAPI1 {
   constructor() {
     this.BASE_URL = 'http://localhost:3000';
     this.END_POINT = '/users';
@@ -9,6 +14,7 @@ class UsersAPI {
     const url = this.URL;
     return fetch(url).then(res => res.json());
   }
+
   createUser(user) {
     const url = this.URL;
 
@@ -56,6 +62,29 @@ class UsersAPI {
     };
 
     return fetch(url, options).then(res => res.json());
+  }
+}
+
+class UsersAPI {
+  async getUsers() {
+    const res = await axios.get('');
+    return res.data;
+  }
+  async createUser(user) {
+    const res = await axios.post('', user);
+    return res.data;
+  }
+  async updateUser({ id, ...user }) {
+    const res = await axios.patch(`/${id}`, user);
+    return res.data;
+  }
+  async resetUser({ id, ...user }) {
+    const res = await axios.put(`/${id}`, user);
+    return res.data;
+  }
+  async removeUser(id) {
+    const res = await axios.delete(`/${id}`);
+    return res.data;
   }
 }
 

@@ -1,57 +1,31 @@
-const BASE_URL = 'http://localhost:3000';
-const END_POINT = '/books';
+import axios from 'axios';
 
-export function getBooks() {
-  const url = `${BASE_URL}${END_POINT}`;
-  return fetch(url).then(res => res.json());
+const axios2 = axios.create({
+  baseURL: 'http://localhost:3000',
+  headers: { 'X-Custom-Header': 'foobar' },
+  params: { test: 123, apiKey: 'Volodka' },
+});
+
+export async function getBooks() {
+  const res = await axios2.get('/books');
+  return res.data;
 }
 
-export function createBook(book) {
-  const url = `${BASE_URL}${END_POINT}`;
-
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(book),
-  };
-
-  return fetch(url, options).then(res => res.json());
+export async function createBook(book) {
+  const res = await axios2.post('/books', book);
+  return res.data;
 }
 
-export function resetBook(id, book) {
-  const url = `${BASE_URL}${END_POINT}/${id}`;
-
-  const options = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(book),
-  };
-
-  return fetch(url, options).then(res => res.json());
+export async function resetBook(id, book) {
+  const res = await axios2.put(`/books/${id}`, book);
+  return res.data;
 }
 
-export function updateBook(id, book) {
-  const url = `${BASE_URL}${END_POINT}/${id}`;
-
-  const options = {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(book),
-  };
-
-  return fetch(url, options).then(res => res.json());
+export async function updateBook(id, book) {
+  const res = await axios2.patch(`/books/${id}`, book);
+  return res.data;
 }
 
 export function deleteBook(id) {
-  const url = `${BASE_URL}${END_POINT}/${id}`;
-  const options = {
-    method: 'DELETE',
-  };
-  return fetch(url, options);
+  return axios2.delete(`/books/${id}`);
 }

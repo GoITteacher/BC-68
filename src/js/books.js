@@ -20,7 +20,7 @@ refs.resetFormElem.addEventListener('submit', onBookReset);
 refs.updateFormElem.addEventListener('submit', onBookUpdate);
 refs.deleteFormElem.addEventListener('submit', onBookDelete);
 
-function onBookCreate(e) {
+async function onBookCreate(e) {
   e.preventDefault();
 
   const book = {
@@ -32,19 +32,14 @@ function onBookCreate(e) {
     img: `https://source.unsplash.com/1280x720/?random=${Math.random()}&book`,
   };
 
-  createBook(book)
-    .then(newBook => {
-      const markup = bookTemplate(newBook);
-      refs.bookListElem.insertAdjacentHTML('beforeend', markup);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  const newBook = await createBook(book);
+  const markup = bookTemplate(newBook);
+  refs.bookListElem.insertAdjacentHTML('beforeend', markup);
 
   e.target.reset();
 }
 
-function onBookReset(e) {
+async function onBookReset(e) {
   e.preventDefault();
 
   const id = e.target.elements.bookId.value;
@@ -58,21 +53,20 @@ function onBookReset(e) {
     img: `https://source.unsplash.com/1280x720/?random=${Math.random()}&book`,
   };
 
-  resetBook(id, book)
-    .then(updatedBook => {
-      const markup = bookTemplate(updatedBook);
-      const oldBook = document.querySelector(`[data-id="${id}"]`);
-      oldBook.insertAdjacentHTML('afterend', markup);
-      oldBook.remove();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  try {
+    const updatedBook = await resetBook(id, book);
+    const markup = bookTemplate(updatedBook);
+    const oldBook = document.querySelector(`[data-id="${id}"]`);
+    oldBook.insertAdjacentHTML('afterend', markup);
+    oldBook.remove();
+  } catch (err) {
+    console.log(err);
+  }
 
   e.target.reset();
 }
 
-function onBookUpdate(e) {
+async function onBookUpdate(e) {
   e.preventDefault();
   const id = e.target.elements.bookId.value;
   const book = {};
@@ -84,29 +78,26 @@ function onBookUpdate(e) {
       book[myKey] = value;
     }
   });
-
-  updateBook(id, book)
-    .then(updatedBook => {
-      const markup = bookTemplate(updatedBook);
-      const oldBook = document.querySelector(`[data-id="${id}"]`);
-      oldBook.insertAdjacentHTML('afterend', markup);
-      oldBook.remove();
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  try {
+    const updatedBook = await updateBook(id, book);
+    const markup = bookTemplate(updatedBook);
+    const oldBook = document.querySelector(`[data-id="${id}"]`);
+    oldBook.insertAdjacentHTML('afterend', markup);
+    oldBook.remove();
+  } catch (err) {
+    console.log(err);
+  }
 
   e.target.reset();
 }
 
-function onBookDelete(e) {
+async function onBookDelete(e) {
   e.preventDefault();
   const id = e.target.elements.bookId.value;
 
-  deleteBook(id).then(() => {
-    const oldBook = document.querySelector(`[data-id="${id}"]`);
-    oldBook.remove();
-  });
+  await deleteBook(id);
+  const oldBook = document.querySelector(`[data-id="${id}"]`);
+  oldBook.remove();
 
   e.target.reset();
 }

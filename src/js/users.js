@@ -1,4 +1,6 @@
 import { usersAPI } from './modules/usersAPI';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 // ===================================================
 const refs = {
@@ -16,7 +18,7 @@ refs.updateUserForm.addEventListener('submit', onUpdateUser);
 refs.resetUserForm.addEventListener('submit', onResetUser);
 refs.deleteUserForm.addEventListener('submit', onDeleteUser);
 
-function onCreateUser(e) {
+async function onCreateUser(e) {
   e.preventDefault();
 
   const user = {};
@@ -26,15 +28,18 @@ function onCreateUser(e) {
     user[key] = value;
   });
 
-  usersAPI.createUser(user).then(newUser => {
+  try {
+    const newUser = await usersAPI.createUser(user);
     const markup = userTemplate(newUser);
     refs.userListElem.insertAdjacentHTML('afterbegin', markup);
-  });
+  } catch {
+    showError('Error Create User');
+  }
 
   e.target.reset();
 }
 
-function onUpdateUser(e) {
+async function onUpdateUser(e) {
   e.preventDefault();
   const user = {};
   const formData = new FormData(e.target);
@@ -43,17 +48,20 @@ function onUpdateUser(e) {
     if (value) user[key] = value;
   });
 
-  usersAPI.updateUser(user).then(updatedUser => {
+  try {
+    const updatedUser = await usersAPI.updateUser(user);
     const oldUser = document.querySelector(`[data-id="${user.id}"]`);
     const markup = userTemplate(updatedUser);
     oldUser.insertAdjacentHTML('afterend', markup);
     oldUser.remove();
-  });
+  } catch {
+    showError('Error Update User');
+  }
 
   e.target.reset();
 }
 
-function onResetUser(e) {
+async function onResetUser(e) {
   e.preventDefault();
   const user = {};
   const formData = new FormData(e.target);
@@ -62,23 +70,31 @@ function onResetUser(e) {
     user[key] = value;
   });
 
-  usersAPI.resetUser(user).then(updatedUser => {
+  try {
+    const updatedUser = await usersAPI.resetUser(user);
     const oldUser = document.querySelector(`[data-id="${user.id}"]`);
     const markup = userTemplate(updatedUser);
     oldUser.insertAdjacentHTML('afterend', markup);
     oldUser.remove();
-  });
+  } catch {
+    showError('Error Reset User');
+  }
 
   e.target.reset();
 }
 
-function onDeleteUser(e) {
+async function onDeleteUser(e) {
   e.preventDefault();
   const id = e.target.elements.id.value;
-  usersAPI.removeUser(id).then(() => {
+
+  try {
+    await usersAPI.removeUser(id);
     const oldUser = document.querySelector(`[data-id="${id}"]`);
     oldUser.remove();
-  });
+  } catch {
+    showError('Error Remove User');
+  }
+
   e.target.reset();
 }
 
@@ -108,3 +124,13 @@ function usersTemplate(arr) {
 }
 
 // ============================================================
+
+function showError(message) {
+  iziToast.error({
+    title: 'Error',
+    message,
+    position: 'topRight',
+    close: false,
+    timeout: 1000,
+  });
+}
