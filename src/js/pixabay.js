@@ -1,6 +1,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import { fetchArticles } from './modules/newsApi2';
+import { getArticles } from './modules/pixabay';
 
 const refs = {
   formElem: document.querySelector('.js-search-form'),
@@ -21,9 +21,14 @@ refs.formElem.addEventListener('submit', async e => {
   refs.articleListElem.innerHTML = '';
 
   showLoader();
-  const data = await fetchArticles(query, page);
-  renderArticles(data.articles);
-  maxPage = data.total_pages;
+  try {
+    const data = await getArticles(query, page);
+    console.log(data);
+    renderArticles(data.hits);
+    maxPage = Math.ceil(data.totalHits / 10);
+  } catch (err) {
+    console.log(err);
+  }
 
   hideLoader();
   updateObserverStatus();
@@ -33,9 +38,13 @@ async function loadMore() {
   console.log('LOAD MORE');
   page += 1;
 
-  showLoader();
-  const data = await fetchArticles(query, page);
-  renderArticles(data.articles);
+  try {
+    showLoader();
+    const data = await getArticles(query, page);
+    renderArticles(data.hits);
+  } catch (err) {
+    console.log(err);
+  }
 
   hideLoader();
   updateObserverStatus();
@@ -43,24 +52,10 @@ async function loadMore() {
 
 // =========================================================
 
-function articleTemplate(article) {
+function articleTemplate(obj) {
   return `<li class="card news-card">
-  <img loading="lazy"
-    class="news-image"
-    src="${article.media}"
-    alt="${article.title}"
-  />
-  <h3 class="card-title">
-    ${article.title}
-  </h3>
-  <p class="card-desc">
-  ${article.summary}
-  </p>
-  <div class="card-footer">
-    <span>${article.author}</span>
-    <span>${article.published_date}</span>
-  </div>
-</li>`;
+  <img src="${obj.previewURL}">
+  </li>`;
 }
 
 function articlesTemplate(arr) {
